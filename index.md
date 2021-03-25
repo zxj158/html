@@ -1,37 +1,60 @@
-## Welcome to GitHub Pages
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="js/vue.js" type="text/javascript" charset="UTF-8"></script>
+		<title>猜数字游戏</title>
+	</head>
+	<body>
+		<div id="app-5">
+		  <p>{{ message }}</p>
+		  <my-game></my-game>
+		  
+		</div>
 
-You can use the [editor on GitHub](https://github.com/zxj158/html/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/zxj158/html/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+	<script type="text/javascript">
+		Vue.component("my-game",{
+		   data:function(){
+			return {
+			 randomNum:0,
+			 myInput:0,
+			 result:""
+			}
+         },
+		template:`
+		<div>
+		 <input type="text" v-model.number="myInput"/>
+		 <br>
+		 <p>{{result}}</p>
+		</div>
+	   `,
+	   beforeMount: function () {
+		  //创建一个100以内的随机的整数
+		  var num = Math.floor(Math.random()*100);
+		  console.log(num);
+		  this.randomNum = num;
+		  },
+		   //当数据改变时执行的操作
+		   watch:{
+			myInput:function(){
+			 if(this.myInput==this.randomNum){
+			  this.result = "恭喜：猜对了";
+			 }else if(this.myInput>this.randomNum){
+			  this.result = "啊哦！猜大了";
+			 }else{
+			  this.result = "啊哦！猜小了";
+			 }
+			}
+		   }
+		  })
+		  
+		var app5 = new Vue({
+		  el: '#app-5',
+		  data: {
+			message: 'Hello Vue.js!',
+			}
+		  })
+	</script>
+		
+	</body>
+</html>
