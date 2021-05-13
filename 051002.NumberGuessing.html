@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<p>猜数字游戏，请猜在一到一百之间的整数</p>
+			<input type="text" v-model="myNumber" @keydown.enter="show()" />
+			
+		</div>
+		
+		<script type="text/javascript">
+			let v = new Vue({
+				el:"#app",
+				data:{
+					number:Math.round(Math.random()*100),
+					myNumber:""
+				},
+					
+				methods:{
+					show(){
+						if(v.myNumber>v.number){
+							alert("你猜的偏大")
+						}
+						else if(v.myNumber<v.number){
+							alert("你猜的偏小")
+						}
+						else if(v.myNumber=v.number){
+							alert("恭喜你猜对了")
+						}
+					}
+				}
+			})
+			
+		</script>
+		
+		
+	</body>
+</html>
