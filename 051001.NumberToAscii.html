@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!--获取输入的字符的ascaII码-->
+			<input type="text" v-model="key" @keydown.enter="show()" /><br />
+			<!--键盘输入的另外两种方式
+			<input type="text" @keypress="show2()" /><br />
+			<input type="text" @keyup="show3()" />
+			-->
+			
+		</div>
+		
+		<script type="text/javascript">
+			let v=new Vue({
+				el:"#app",
+				data:{
+					key:""
+					
+				},
+				methods:{
+					show(){
+						alert(v.key.charCodeAt());
+					}
+					/*
+					show2(){
+						alert("b");
+					}
+					show3(){
+						alert("c");
+					}
+					*/
+					
+				}
+			})
+		</script>
+		
+		
+	</body>
+</html>
